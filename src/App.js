@@ -5,10 +5,18 @@ import Home from "./Pages/Home/Home";
 import Users from "./Pages/Users/Users";
 import User from "./Pages/User/User";
 import Products from "./Pages/Products/Products";
+import Product from "./Pages/Product/Product";
 import Navbar from "./Components/Navbar/Navbar";
 import Menu from "./Components/Menu/Menu";
 import Login from "./Pages/Login/Login";
 import "./styles/global.scss"
+
+//! React Query
+
+import {QueryClientProvider, QueryClient} from "@tanstack/react-query"
+
+const queryClient = new QueryClient();
+
 
 const App = () => {
   const Layout = () => {
@@ -20,7 +28,9 @@ const App = () => {
             <Menu />
           </div>
           <div className="contentContainer">
-            <Outlet />
+            <QueryClientProvider client={queryClient}>
+              <Outlet />
+            </QueryClientProvider>
           </div>
         </div>
       </div>
@@ -47,6 +57,10 @@ const App = () => {
         {
           path: "/products",
           element: <Products />,
+        },
+        {
+          path: "/products/:id",
+          element: <Product />,
         },
       ],
     },

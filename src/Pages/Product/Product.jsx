@@ -1,15 +1,16 @@
 import React from "react";
 import Single from "../../Components/Single/Single";
-import { singleUser } from "../../data";
+import "./Product.scss";
+import { singleProduct } from "../../data";
 
-const User = () => {
+const Product = () => {
   //! fetch data and send to single component
 
   return (
     <div>
-      <Single data = {singleUser} />
+      <Single data = {singleProduct} />
     </div>
   );
 };
 
-export default User;
+export default Product;

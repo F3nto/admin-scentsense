@@ -1,6 +1,5 @@
 import React from "react";
 import { Search, Apps, Notifications, OpenWith } from "@mui/icons-material";
-import { Badge } from "@mui/material";
 
 import "./Navbar.scss";
 
@@ -10,10 +9,12 @@ const Navbar = () => {
       <div className="logo">
         <span>Scent-sense-admin</span>
       </div>
-      <div className="icon">
-        <Search />
-        <Apps />
-        <OpenWith />
+      <div className="icons">
+
+      <Search className="icon" />
+      <Apps className="icon" />
+      <OpenWith className="icon" />
+      
         <div className="notification">
         <Notifications />
         <span className="noti">1</span>

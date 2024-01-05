@@ -13,6 +13,7 @@ import {
   barChartBoxVisit,
   barChartBoxRevenue,
 } from "../../data";
+
 const Home = () => {
   return (
     <div className="home">

@@ -16,12 +16,12 @@ const PieChartBox = () => {
         <ResponsiveContainer width="99%" height={300}>
           <PieChart>
             <Tooltip
-              contentStyle={{ background: "white", borderRadius: "5px" }}
+              contentStyle={{ background: 'yellowgreen', borderRadius: "5px" }}
             />
             <Pie
               data={data}
               innerRadius={"70%"}
-              outerRadius={"90%"}
+              outerRadius={"100%"}
               paddingAngle={5}
               dataKey="value"
             >

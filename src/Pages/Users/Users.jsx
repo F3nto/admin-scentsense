@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import DataTable from "../../Components/DataTable/DataTable";
-import { userRows } from "../../data";
 import Add from "../../Components/Add/Add";
-import "./Users.scss"
+import "./Users.scss";
+import { useQuery } from "@tanstack/react-query";
 
 const dataGridColumns = [
   {
@@ -10,7 +10,7 @@ const dataGridColumns = [
     headerName: "Avator",
     width: 100,
     renderCell: (params) => {
-      return <img src={params.row.img || "https://shorturl.at/xFH29"} alt="" />;
+      return <img src={params.row.img || "https://ccbs.uci.edu/wp-content/uploads/sites/3/2022/03/no-user-image-icon-27.png"} alt="" />;
     },
   },
   // {
@@ -36,34 +36,47 @@ const dataGridColumns = [
     width: 100,
     type: "boolean",
   },
-  { field: "firstName", headerName: "First Name", width: 150, type : "string" },
-  { field: "lastName", headerName: "Last Name", width: 150, type : "string" },
+  { field: "firstName", headerName: "First Name", width: 150, type: "string" },
+  { field: "lastName", headerName: "Last Name", width: 150, type: "string" },
   {
     field: "fullName",
     headerName: "Full Name",
     width: 150,
-   
+
     valueGetter: (params) =>
       `${params.row.firstName || ""} ${params.row.lastName || ""}`,
-    type : "string"
+    type: "string",
   },
 
-  { field: "email", headerName: "Email", width: 200, type : "string" },
-  { field: "isActive", headerName: "Active", width: 100, type : "string" },
+  { field: "email", headerName: "Email", width: 200, type: "string" },
+  { field: "isActive", headerName: "Active", width: 100, type: "string" },
 ];
 const Users = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+
+  const { isLoading, data } = useQuery({
+    queryKey: ["allusers"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:8800/api/users");
+      return res.json();
+    },
+  });
+
   return (
     <>
-    <div className="user">
-      <div className="info">
-        <h2>Users</h2>
-        <button onClick={() => setOpen(true)}>Add New User</button>
-      </div>
+      <div className="user">
+        <div className="info">
+          <h2>Users</h2>
+          <button onClick={() => setOpen(true)}>Add New User</button>
+        </div>
 
-      <DataTable slug="users" columns={dataGridColumns} rows = {userRows} />
-    </div>
-    {open && <Add slug = "users" columns = {dataGridColumns} setOpen = {setOpen} /> }
+        {isLoading ? (
+          "Loading..."
+        ) : (
+          <DataTable slug="users" columns={dataGridColumns} rows={data} />
+        )}
+      </div>
+      {open && <Add slug="users" columns={dataGridColumns} setOpen={setOpen} />}
     </>
   );
 };

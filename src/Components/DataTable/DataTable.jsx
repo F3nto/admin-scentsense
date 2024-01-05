@@ -3,25 +3,46 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import "./DataTable.scss";
 import { Link } from "react-router-dom";
 import { Pageview, Delete } from "@mui/icons-material";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 
 const DataTable = ({ columns, rows, slug }) => {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: (id) => {
+      return fetch(`http://localhost:8800/api/${slug}/${id}`, {
+        method: "delete",
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries([`all${slug}`]);
+    },
+  });
+
+  const handleDelete = (id) => {
+    mutation.mutate(id);
+  };
+
   const userAction = {
     field: "actions",
     headerName: "Actions",
     width: 100,
     renderCell: (params) => {
+      console.log("params...", params);
+
       return (
         <div className="action">
-          <div className="view">
+          <Link to={`/${slug}/${params.row.id}`} className="view">
             <Pageview />
-          </div>
-          <div className="delete">
+          </Link>
+          <div className="delete" onClick={() => handleDelete(params.row.id)}>
             <Delete />
           </div>
         </div>
       );
     },
   };
+
   return (
     <div className="dataTable">
       <DataGrid
