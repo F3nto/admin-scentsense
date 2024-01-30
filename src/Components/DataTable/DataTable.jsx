@@ -8,47 +8,47 @@ import { useQueryClient, useMutation } from "@tanstack/react-query";
 const DataTable = ({ columns, rows, slug }) => {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation({
-    mutationFn: (id) => {
-      return fetch(`http://localhost:8800/api/${slug}/${id}`, {
-        method: "delete",
-      });
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries([`all${slug}`]);
-    },
-  });
+  // const mutation = useMutation({
+  //   mutationFn: (id) => {
+  //     return fetch(`http://localhost:4000/api/v1/all-products`, {
+  //       method: "delete",
+  //     });
+  //   },
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries([`all${slug}`]);
+  //   },
+  // });
 
-  const handleDelete = (id) => {
-    mutation.mutate(id);
-  };
+  // const handleDelete = (id) => {
+  //   mutation.mutate(id);
+  // };
 
-  const userAction = {
-    field: "actions",
-    headerName: "Actions",
-    width: 100,
-    renderCell: (params) => {
-      console.log("params...", params);
+  // const userAction = {
+  //   field: "actions",
+  //   headerName: "Actions",
+  //   width: 100,
+  //   renderCell: (params) => {
+  //     console.log("params...", params);
 
-      return (
-        <div className="action">
-          <Link to={`/${slug}/${params.row.id}`} className="view">
-            <Pageview />
-          </Link>
-          <div className="delete" onClick={() => handleDelete(params.row.id)}>
-            <Delete />
-          </div>
-        </div>
-      );
-    },
-  };
+  //     return (
+  //       <div className="action">
+  //         <Link className="view">
+  //           <Pageview />
+  //         </Link>
+  //         <div className="delete" >
+  //           <Delete />
+  //         </div>
+  //       </div>
+  //     );
+  //   },
+  // };
 
   return (
     <div className="dataTable">
       <DataGrid
         className="dataGrid"
         rows={rows}
-        columns={[...columns, userAction]}
+        columns={[...columns]}
         initialState={{
           pagination: {
             paginationModel: {

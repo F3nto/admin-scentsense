@@ -6,49 +6,17 @@ import { useQuery } from "@tanstack/react-query";
 
 const dataGridColumns = [
   {
-    field: "Image",
-    headerName: "Avator",
-    width: 100,
-    renderCell: (params) => {
-      return <img src={params.row.img || "https://shorturl.at/xFH29"} alt="" />;
-    },
+    field: "img",
+    headerName: "Image",
+    width: 120,
   },
-  {
-    field: "title",
-    type: "string",
-    headerName: "Title",
-    width: 250,
-  },
-  {
-    field: "color",
-    type: "string",
-    headerName: "Color",
-    width: 100,
-  },
-  {
-    field: "price",
-    type: "string",
-    headerName: "Price",
-    width: 100,
-  },
-  {
-    field: "producer",
-    headerName: "Producer",
-    type: "string",
-    width: 100,
-  },
-  {
-    field: "createdAt",
-    headerName: "Created At",
-    width: 150,
-    type: "string",
-  },
-  {
-    field: "inStock",
-    headerName: "In Stock",
-    width: 100,
-    type: "boolean",
-  },
+  { field: "name", headerName: "Name", width: 200 },
+  { field: "brand", headerName: "Brand", width: 150 },
+  { field: "desc", headerName: "Description", flex: 1 },
+  { field: "gender", headerName: "Gender", width: 120 },
+  { field: "instock", headerName: "In Stock", width: 120 },
+  { field: "price", headerName: "Price", width: 120 },
+  { field: "size", headerName: "Size", width: 120 },
 ];
 const Products = () => {
   const [open, setOpen] = useState(false);
@@ -56,8 +24,14 @@ const Products = () => {
   const { isLoading, data } = useQuery({
     queryKey: ["allproducts"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:8800/api/products");
-      return res.json();
+      const res = await fetch("http://localhost:4000/api/v1/all-products");
+      const products = await res.json();
+      const productsWithId = products.map((product) => ({
+        ...product,
+        id: product._id,
+      }));
+
+      return productsWithId;
     },
   });
 
@@ -65,7 +39,7 @@ const Products = () => {
     <>
       <div className="user">
         <div className="info">
-          <h2>Users</h2>
+          <h2>Products</h2>
           <button onClick={() => setOpen(true)}>Add New Product</button>
         </div>
 

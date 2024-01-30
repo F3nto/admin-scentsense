@@ -62,8 +62,8 @@ export const MenuData = [
       },
       {
         id: 4,
-        title: "Posts",
-        url: "/posts",
+        title: "Best Seller",
+        url: "/bestseller",
         icon: <PostAdd />,
       },
     ],

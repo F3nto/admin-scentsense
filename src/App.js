@@ -8,6 +8,7 @@ import Products from "./Pages/Products/Products";
 import Product from "./Pages/Product/Product";
 import Navbar from "./Components/Navbar/Navbar";
 import Menu from "./Components/Menu/Menu";
+import BestSeller from "./Pages/BestSeller/BestSeller"
 import Login from "./Pages/Login/Login";
 import "./styles/global.scss"
 
@@ -62,6 +63,10 @@ const App = () => {
           path: "/products/:id",
           element: <Product />,
         },
+        {
+          path : "/bestseller",
+          element : <BestSeller />
+        }
       ],
     },
 
