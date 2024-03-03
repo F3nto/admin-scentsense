@@ -1,7 +1,12 @@
 import React from "react";
 import "./Home.scss";
 import TopBox from "../../Components/TopBox/TopBox";
-import ChartBox from "../../Components/ChartBox/ChartBox";
+
+import ProductChartBox from "../../Components/ProductChartBox/ProductChartBox";
+import UserChartBox from "../../Components/UserChartBox/UserChartBox";
+import ConverChartBox from "../../Components/ConverChartBox/ConverChartBox"
+import RevChartBox from "../../Components/RevChartBox/RevChartBox";
+
 import BarChartBox from "../../Components/BarChartBox/BarChartBox";
 import PieChartBox from "../../Components/PieChartBox/PieChartBox";
 import BigChartBox from "../../Components/BigChartBox/BigChartBox";
@@ -21,19 +26,19 @@ const Home = () => {
         <TopBox />
       </div>
       <div className="box box-2">
-        <ChartBox data={chartBoxUser} />
+        <UserChartBox data={chartBoxUser} />
       </div>
       <div className="box box-3">
-        <ChartBox data={chartBoxProduct} />
+        <ProductChartBox />
       </div>
       <div className="box box-4">
         <PieChartBox />
       </div>
       <div className="box box-5">
-        <ChartBox data={chartBoxConversion} />
+        <ConverChartBox data={chartBoxConversion} />
       </div>
       <div className="box box-6">
-        <ChartBox data={chartBoxRevenue} />
+        <RevChartBox data={chartBoxRevenue} />
       </div>
       <div className="box box-7">
         <BigChartBox />

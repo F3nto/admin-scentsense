@@ -2,7 +2,6 @@
 @import "../../styles/responsive.scss";
 
 .topBox {
-
     h2 {
         margin-bottom: 20px;
 
@@ -23,7 +22,7 @@
             .user {
                 display: flex;
                 gap: 20px;
-
+                align-items : center;
                 img {
 
                     width: 40px;
@@ -38,19 +37,19 @@
                     @include lg {
                         display: block;
                     }
-                }
+                }   
 
                 .userTexts {
 
                     display: flex;
                     flex-direction: column;
-                    gap: 5px;
+                   
 
                     .username {
 
                         font-size: 14px;
                         font-weight: 500;
-
+                    
                     }
 
                     .email {

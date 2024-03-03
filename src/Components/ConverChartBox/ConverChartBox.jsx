@@ -1,9 +1,9 @@
 import React from "react";
-import "./ChartBox.scss";
+import "./ConverChartBox.scss";
 import { Link } from "react-router-dom";
 import { ResponsiveContainer, LineChart, Line, Tooltip } from "recharts";
 
-const ChartBox = ({data}) => {
+const ConverChartBox = ({data}) => {
   const { color, icon, title, number, dataKey, percentage, chartData } = data;
 
   return (
@@ -44,4 +44,4 @@ const ChartBox = ({data}) => {
   );
 };
 
-export default ChartBox;
+export default ConverChartBox;

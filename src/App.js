@@ -10,11 +10,13 @@ import Navbar from "./Components/Navbar/Navbar";
 import Menu from "./Components/Menu/Menu";
 import BestSeller from "./Pages/BestSeller/BestSeller"
 import Login from "./Pages/Login/Login";
+import OrderList from "./Pages/Orders/OrderList";
 import "./styles/global.scss"
 
 //! React Query
 
 import {QueryClientProvider, QueryClient} from "@tanstack/react-query"
+
 
 const queryClient = new QueryClient();
 
@@ -58,6 +60,11 @@ const App = () => {
         {
           path: "/products",
           element: <Products />,
+        },
+        { 
+          path : "/orders",
+          element : <OrderList />
+
         },
         {
           path: "/products/:id",
